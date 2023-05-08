@@ -7,23 +7,24 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URL;
 import java.nio.file.Paths;
 
 public class Program {
 	public static void main(String[] args) throws IOException {
-		if (args.length != 3 || args[1].length() != 1 || args[2].length() != 1) {
-			System.err.println("Wrong argument");
+		if (args.length != 2 || args[0].length() != 1 || args[1].length() != 1) {
+			System.err.println("Wrong argument_1");
 			System.exit(1);
 		}
 		try {
-			URI u = URI.create("file:" + args[0]).normalize();
-			File f = new File(String.valueOf(Paths.get(u)));
-			BufferedImage image = ImageIO.read(f);
-			Logic l = new Logic(image, args[1], args[2]);
+			System.out.println(Logic.class.getResource("/resources/image.bmp"));
+			BufferedImage image = ImageIO.read(Logic.class.getResource("/resources/image.bmp"));
+
+			Logic l = new Logic(image, args[0], args[1]);
 			l.print();
 		} catch (Exception ex) {
 			ex.fillInStackTrace();
-			System.err.println("Wrong argument");
+			System.err.println("Wrong argument_2");
 			System.exit(1);
 		}
 
